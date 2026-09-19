@@ -1,10 +1,10 @@
 #!/bin/bash
 
 instances={"frontend" "mongodb" "catalogue" "redis" "user" "cart" "mysql" "shipping" "rabbitmq" "payment" "dispatch"}
-AMI_ID = 
-SG_GROUP = 
-instance_type=
-subnet_id=
+AMI_ID = "ami-0220d79f3f480ecf5"
+SG_GROUP = "sg-0f20ff58735ff6cde"
+instance_type= "t3.micro"
+subnet_id= "subnet-03389726b7cd3df4e"
 
 #function to create instances
 create_instance(){
