@@ -1,6 +1,6 @@
 #!/bin/bash
 
-instances={"frontend" "mongodb" "catalogue" "redis" "user" "cart" "mysql" "shipping" "rabbitmq" "payment" "dispatch"}
+instances=( "frontend" "mongodb" "catalogue" "redis" "user" "cart" "mysql" "shipping" "rabbitmq" "payment" "dispatch" )
 AMI_ID = "ami-0220d79f3f480ecf5"
 SG_GROUP = "sg-0f20ff58735ff6cde"
 instance_type= "t3.micro"
