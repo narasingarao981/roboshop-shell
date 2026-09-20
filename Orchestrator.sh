@@ -1,13 +1,13 @@
 #!/bin/bash
 
 instances=( "frontend" "mongodb" "catalogue" "redis" "user" "cart" "mysql" "shipping" "rabbitmq" "payment" "dispatch" )
-AMI_ID = "ami-0220d79f3f480ecf5"
-SG_GROUP = "sg-0f20ff58735ff6cde"
-instance_type= "t3.micro"
-subnet_id= "subnet-03389726b7cd3df4e"
+AMI_ID="ami-0220d79f3f480ecf5"
+SG_GROUP="sg-0f20ff58735ff6cde"
+instance_type="t3.micro"
+subnet_id="subnet-03389726b7cd3df4e"
 PATH=$PWD
-HOSTED_ZONE_ID = "Z04148142KCH92IOUT66N"
-DOMAIN_NAME= "singamden.fun"
+HOSTED_ZONE_ID ="Z04148142KCH92IOUT66N"
+DOMAIN_NAME="singamden.fun"
 
 if [ -d "$PATH/ips.csv" ]
 then 
