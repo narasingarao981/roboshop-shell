@@ -13,7 +13,7 @@ while read line; do
   IP=$(echo "$line" | cut -d " " -f 3)
   echo "Connecting to $InstanceName"
   instanceTrimmed="${my_string%[[:space:]]*}"
-  script="$InstanceName.sh"
+  script="$instanceTrimmed.sh"
   #ssh $USER:$PASSWD@$IP "sh $script"
   echo "$script"
   sshpass -p "$PASSWD" ssh -o StrictHostKeyChecking=no $USER@$IP "[ ! -d "roboshop-shell" ] && git clone https://github.com/narasingarao981/roboshop-shell.git;cd /home/ec2-user/roboshop-shell; sh $script"
