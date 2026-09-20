@@ -10,21 +10,6 @@ CSV_PATH="$CURRENT_PATH/ips.csv"
 HOSTED_ZONE_ID="Z04148142KCH92IOUT66N"
 DOMAIN_NAME="singamden.fun"
 
-if [ -d $CSV_PATH ]
-then
-    rm -rf $CSV_PATH
-    touch $CSV_PATH
-    chmod 777 $CSV_PATH
-else
-    touch $CSV_PATH
-    chmod 777 $CSV_PATH
-fi
-
-for instance in Instances 
-do 
-    create_instance instance
-
-done
 
 #function to create instances and update DNS records
 create_instance(){
@@ -78,3 +63,19 @@ update_IP_store(){
 instance_configure(){
 
 }
+
+if [ -d $CSV_PATH ]
+then
+    rm -rf $CSV_PATH
+    touch $CSV_PATH
+    chmod 777 $CSV_PATH
+else
+    touch $CSV_PATH
+    chmod 777 $CSV_PATH
+fi
+
+for instance in Instances 
+do 
+    create_instance instance
+
+done
