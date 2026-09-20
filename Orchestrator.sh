@@ -59,5 +59,5 @@ create_instance(){
 
 for instance in "${instances[@]}"
 do 
-    create_instance instance
+    create_instance $instance
 done
