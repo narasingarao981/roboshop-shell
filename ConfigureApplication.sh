@@ -11,10 +11,8 @@ file="/home/ec2-user/roboshop-shell/ips.csv"
 while read line; do
   InstanceName=$(echo "$line" | cut -d " " -f 1)
   IP=$(echo "$line" | cut -d " " -f 3)
-  echo "Connecting to $InstanceName"
   script="$InstanceName.sh"
-  #ssh $USER:$PASSWD@$IP "sh $script"
-  echo "$script"
+  echo "Connecting to $InstanceName"
   sshpass -p "$PASSWD" ssh -o StrictHostKeyChecking=no $USER@$IP "[ ! -d 'roboshop-shell' ] && git clone https://github.com/narasingarao981/roboshop-shell.git;cd /home/ec2-user/roboshop-shell; sh $script" < /dev/null
 
 done < "$file"
