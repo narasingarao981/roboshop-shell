@@ -63,6 +63,6 @@ create_instance(){
 
 for instance in "${instances[@]}"
 do 
-    echo $instance
-    #create_instance $instance
+    #echo $instance
+    create_instance $instance
 done
