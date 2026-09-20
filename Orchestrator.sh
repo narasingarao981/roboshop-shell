@@ -38,9 +38,13 @@ update_dns_route53(){
 
 #function to create instances and update DNS records
 create_instance(){
+    #Creating instance 
     INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$1}]" --instance-type $instance_type --security-group-ids $SG_GROUP --subnet-id $subnet_id --query 'Instances[0].InstanceId' --output text)
+    
+    #wait for Instance to start completely
     aws ec2 wait instance-running --instance-ids "$INSTANCE_ID"
     
+    #Obtain the IP of instance to map them to the DNS records. Only fronend one will have public IP mapped to parent domain name
     if [ $1 == "frontend" ]
     then
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
@@ -58,7 +62,7 @@ create_instance(){
 }
 
 
-
+#Create the empty CSV file to store the private IPs of each instance. IPs will be used for further scripts
 : > "$CSV_PATH"
 
 for instance in "${instances[@]}"
