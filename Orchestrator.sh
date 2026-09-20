@@ -54,15 +54,7 @@ update_dns_route53(){
 
 }
 
-#create a csv file and update the instance internal IP
-update_IP_store(){
 
-}
-
-#Connect to VM and clone the git repo and execute the respective script
-instance_configure(){
-
-}
 
 if [ -d $CSV_PATH ]
 then
