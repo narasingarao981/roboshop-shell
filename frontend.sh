@@ -20,7 +20,7 @@ validate(){
 
 rpm -qa | grep nginx-1.24
 
-if [ $? -ne 0 ]
+if [ $? -eq 0 ]
 then 
     dnf module disable nginx -y | tee -a $LOG_FILE
     validate $? "nginx module diable"
