@@ -6,7 +6,7 @@ SG_GROUP="sg-0f20ff58735ff6cde"
 instance_type="t3.micro"
 subnet_id="subnet-03389726b7cd3df4e"
 PATH=$PWD
-HOSTED_ZONE_ID ="Z04148142KCH92IOUT66N"
+HOSTED_ZONE_ID="Z04148142KCH92IOUT66N"
 DOMAIN_NAME="singamden.fun"
 
 if [ -d "$PATH/ips.csv" ]
