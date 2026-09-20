@@ -15,5 +15,8 @@ while read line; do
   echo $IP
   echo "Connecting to $InstanceName"
   script="$InstanceName.sh"
-  ssh $USER:$PASSWD@$IP "sh $script"
+  #ssh $USER:$PASSWD@$IP "sh $script"
+
+  shpass -p "$PASSWD" ssh -o StrictHostKeyChecking=no $USER@$IP "uptime"
+
 done < "$file"
