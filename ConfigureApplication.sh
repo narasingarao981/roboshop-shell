@@ -13,4 +13,7 @@ while read line; do
   IP=$(echo "$line" | cut -d " " -f 3)
   echo $InstanceName
   echo $IP
+  echo "Connecting to $InstanceName"
+  script="$InstanceName.sh"
+  ssh $USER:$PASSWD@$IP "sh $script"
 done < "$file"
