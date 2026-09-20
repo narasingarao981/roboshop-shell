@@ -15,14 +15,14 @@ DOMAIN_NAME="singamden.fun"
 create_instance(){
     INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$1}]" --instance-type $instance_type --security-group-ids $SG_GROUP --subnet-id $subnet_id --query 'Instances[0].InstanceId' --output text)
     
-    if [ $1 -eq "frontend" ]
+    if [ $1 == "frontend" ]
     then
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
-        RECORD_NAME="$instance.$DOMAIN_NAME"
+        RECORD_NAME="$1.$DOMAIN_NAME"
         update_dns_route53 $RECORD_NAME $IP
     else
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PrivateIpAddress' --output text)
-        RECORD_NAME="$instance.$DOMAIN_NAME"
+        RECORD_NAME="$1.$DOMAIN_NAME"
         update_dns_route53 $RECORD_NAME $IP
     fi
     
@@ -66,8 +66,7 @@ else
     chmod 777 $CSV_PATH
 fi
 
-for instance in Instances 
+for instance in instances 
 do 
     create_instance instance
-
 done
