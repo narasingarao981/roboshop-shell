@@ -8,8 +8,6 @@ SCRIPT_DIR=$PWD
 mkdir -p $LOGS_FOLDER
 echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
-rpm -qa | grep nginx-1.24
-
 validate(){
     if [ $1 -eq 0 ]
     then
@@ -19,6 +17,8 @@ validate(){
         exit 1
     fi
 }
+
+rpm -qa | grep nginx-1.24
 
 if [ $? -ne 0 ]
 then 
