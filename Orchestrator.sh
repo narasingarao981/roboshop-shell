@@ -6,17 +6,18 @@ SG_GROUP="sg-0f20ff58735ff6cde"
 instance_type="t3.micro"
 subnet_id="subnet-03389726b7cd3df4e"
 PATH=$PWD
+CSV_PATH="$PATH/ips.csv"
 HOSTED_ZONE_ID="Z04148142KCH92IOUT66N"
 DOMAIN_NAME="singamden.fun"
 
-if [ -d "$PATH/ips.csv" ]
-then 
-    rm -rf "$PATH/ips.csv"
-    touch "$PATH/ips.csv"
-    chmod 777 "$PATH/ips.csv"
+if [ -d $CSV_PATH ]
+then
+    rm -rf $CSV_PATH
+    touch $CSV_PATH
+    chmod 777 $CSV_PATH
 else
-    touch "$PATH/ips.csv"
-    chmod 777 "$PATH/ips.csv"
+    touch $CSV_PATH
+    chmod 777 $CSV_PATH
 fi
 
 for instance in Instances 
