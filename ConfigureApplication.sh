@@ -9,5 +9,6 @@ PASSWD="DevOps321"
 
 file="/home/ec2-user/roboshop-shell/ips.csv"
 while read line; do
-  echo "${line}"
+  InstanceName= $line | cut -d " " -f 1
+  echo $InstanceName
 done < "${file}"
