@@ -18,30 +18,24 @@ validate(){
     fi
 }
 
-rpm -qa | grep nginx-1.24
 
-if [ $? -eq 0 ]
-then 
-    dnf module disable nginx -y | tee -a $LOG_FILE
-    validate $? "nginx module diable"
-    dnf module enable nginx:1.24 -y | tee -a $LOG_FILE
-    validate $? "nginx 1.24 module enable"
-    dnf install nginx -y | tee -a $LOG_FILE
-    validate $? "nginx installation"
-    systemctl enable nginx | tee -a $LOG_FILE
-    validate $? "nginx auto start"    
-    rm -rf /usr/share/nginx/html/* 
-    validate $? "Removing the default html files"
-    curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
-    validate $? "cloning the application"
-    cd /usr/share/nginx/html 
-    unzip /tmp/frontend.zip | tee -a $LOG_FILE
-    validate $? "nginx unzip"
-    cp /home/ec2-user/roboshop-shell/nginx.conf /etc/nginx/nginx.conf
-    validate $? "nginx application file copy"
-    systemctl start nginx | tee -a $LOG_FILE
-    validate $? "nginx service start"
+dnf module disable nginx -y | tee -a $LOG_FILE
+validate $? "nginx module diable"
+dnf module enable nginx:1.24 -y | tee -a $LOG_FILE
+validate $? "nginx 1.24 module enable"
+dnf install nginx -y | tee -a $LOG_FILE
+validate $? "nginx installation"
+systemctl enable nginx | tee -a $LOG_FILE
+validate $? "nginx auto start"    
+rm -rf /usr/share/nginx/html/* 
+validate $? "Removing the default html files"
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+validate $? "cloning the application"
+cd /usr/share/nginx/html 
+unzip /tmp/frontend.zip | tee -a $LOG_FILE
+validate $? "nginx unzip"
+cp /home/ec2-user/roboshop-shell/nginx.conf /etc/nginx/nginx.conf
+validate $? "nginx application file copy"
+systemctl start nginx | tee -a $LOG_FILE
+validate $? "nginx service start"
 
-else
-    echo "installation already exists.. SKIPPING"
-fi
