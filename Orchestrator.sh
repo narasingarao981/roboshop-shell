@@ -13,7 +13,7 @@ DOMAIN_NAME="singamden.fun"
 
 #function to create instances and update DNS records
 create_instance(){
-    INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$1}]" --instance-type $instance_type --security-group-ids $SG_GROUP --subnet-id $subnet_id--query 'Instances[0].InstanceId' --output text)
+    INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$1}]" --instance-type $instance_type --security-group-ids $SG_GROUP --subnet-id $subnet_id --query 'Instances[0].InstanceId' --output text)
     
     if [ $1 -eq "frontend" ]
     then
@@ -56,7 +56,7 @@ update_dns_route53(){
 
 
 
-if [ -d $CSV_PATH ]
+if [ -f $CSV_PATH ]
 then
     rm -rf $CSV_PATH
     touch $CSV_PATH
