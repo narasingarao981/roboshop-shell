@@ -6,7 +6,7 @@ SG_GROUP="sg-0f20ff58735ff6cde"
 instance_type="t3.micro"
 subnet_id="subnet-03389726b7cd3df4e"
 CURRENT_PATH=$PWD
-CSV_PATH="$PATH/ips.csv"
+CSV_PATH="$CURRENT_PATH/ips.csv"
 HOSTED_ZONE_ID="Z04148142KCH92IOUT66N"
 DOMAIN_NAME="singamden.fun"
 
