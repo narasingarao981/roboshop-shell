@@ -40,16 +40,20 @@ update_dns_route53(){
 create_instance(){
     INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$1}]" --instance-type $instance_type --security-group-ids $SG_GROUP --subnet-id $subnet_id --query 'Instances[0].InstanceId' --output text)
     aws ec2 wait instance-running --instance-ids "$INSTANCE_ID"
+    
     if [ $1 == "frontend" ]
     then
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)
-        RECORD_NAME="$1.$DOMAIN_NAME"
-        update_dns_route53 $RECORD_NAME $IP
+        update_dns_route53 $DOMAIN_NAME $IP
+        PIP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PrivateIpAddress' --output text)
+        echo "$1 , $PIP" >> "$CSV_PATH"
     else
         IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[*].Instances[*].PrivateIpAddress' --output text)
         RECORD_NAME="$1.$DOMAIN_NAME"
         update_dns_route53 $RECORD_NAME $IP
+        echo "$1 , $IP" >> "$CSV_PATH"
     fi
+
     
 }
 
@@ -59,5 +63,6 @@ create_instance(){
 
 for instance in "${instances[@]}"
 do 
-    create_instance $instance
+    echo $instance
+    #create_instance $instance
 done
