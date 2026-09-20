@@ -9,7 +9,7 @@ PASSWD="DevOps321"
 
 file="/home/ec2-user/roboshop-shell/ips.csv"
 while read line; do
-  InstanceName=$(echo "$line" | cut -d " " -f 1)
+  InstanceName=$(echo "$line" | cut -d "," -f 1)
   IP=$(echo "$line" | cut -d " " -f 2)
   echo $InstanceName
   echo $IP
