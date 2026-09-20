@@ -11,9 +11,8 @@ file="/home/ec2-user/roboshop-shell/ips.csv"
 while read line; do
   InstanceName=$(echo "$line" | cut -d "," -f 1)
   IP=$(echo "$line" | cut -d " " -f 3)
-  echo $InstanceName
-  echo $IP
   echo "Connecting to $InstanceName"
+  instanceTrimmed="${my_string%[[:space:]]*}"
   script="$InstanceName.sh"
   #ssh $USER:$PASSWD@$IP "sh $script"
   echo "$script"
