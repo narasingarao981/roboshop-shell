@@ -15,6 +15,6 @@ while read line; do
   script="$InstanceName.sh"
   #ssh $USER:$PASSWD@$IP "sh $script"
   echo "$script"
-  sshpass -p "$PASSWD" ssh -o StrictHostKeyChecking=no $USER@$IP "[ ! -d "roboshop-shell" ] && git clone https://github.com/narasingarao981/roboshop-shell.git;cd /home/ec2-user/roboshop-shell; sh $script"
+  #sshpass -p "$PASSWD" ssh -o StrictHostKeyChecking=no $USER@$IP "[ ! -d "roboshop-shell" ] && git clone https://github.com/narasingarao981/roboshop-shell.git;cd /home/ec2-user/roboshop-shell; sh $script"
 
 done < "$file"
