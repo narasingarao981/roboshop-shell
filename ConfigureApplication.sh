@@ -17,6 +17,6 @@ while read line; do
   script="$InstanceName.sh"
   #ssh $USER:$PASSWD@$IP "sh $script"
 
-  shpass -p "$PASSWD" ssh -o StrictHostKeyChecking=no $USER@$IP "uptime"
+  sshpass -p "$PASSWD" ssh -o StrictHostKeyChecking=no $USER@$IP "uptime"
 
 done < "$file"
