@@ -14,6 +14,6 @@ while read line; do
   script="$InstanceName.sh"
 
   echo "Connecting to $InstanceName"
-  sshpass -p "$PASSWD" ssh -o StrictHostKeyChecking=no $USER@$IP "[ ! -d 'roboshop-shell' ] && git clone https://github.com/narasingarao981/roboshop-shell.git;cd /home/ec2-user/roboshop-shell; sh $script" < /dev/null
+  sshpass -p "$PASSWD" ssh -o StrictHostKeyChecking=no $USER@$IP "[ ! -d 'roboshop-shell' ] && git clone https://github.com/narasingarao981/roboshop-shell.git;cd /home/ec2-user/roboshop-shell;sudo sh $script" < /dev/null
 
 done < "$file"
